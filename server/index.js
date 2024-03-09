@@ -9,17 +9,17 @@ import postRoute from "./routes/post.route.js";
 import commentRoute from "./routes/comment.route.js";
 import cookieParser from "cookie-parser";
 
-const corsOptions={
-    origin:"http://localhost:5173",
+const corsOptions = {
+    origin: "https://blog-app-ten-sage.vercel.app",
     credentials: true,            //access-control-allow-credentials:true
     optionSuccessStatus: 200
 }
-
+// http://localhost:5173
 mongoose.connect(process.env.MONGO)
     .then(() => console.log("MongoDB Connected..."))
     .catch((err) => console.log(err));
 
-    
+
 const app = express();
 
 app.use(cors(corsOptions));
@@ -30,8 +30,10 @@ app.listen(3000, () => {
     console.log("Server is running on port 3000");
 });
 
-
-app.use("/api/user",userRoute);
-app.use("/api/auth",authRoute);
-app.use("/api/post",postRoute);
-app.use("/api/comment",commentRoute);
+app.get("/", (req, res) => {
+    res.send({ msg: "Welcome to the blog API!" })
+});
+app.use("/api/user", userRoute);
+app.use("/api/auth", authRoute);
+app.use("/api/post", postRoute);
+app.use("/api/comment", commentRoute);
