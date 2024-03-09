@@ -1,6 +1,6 @@
 import axios from "axios"
 // const domainUrl = "http://localhost:3000/api/"
-const domaindomainUrl = "https://blog-app-ofha.vercel.app/api/"
+const domainUrl = "https://blog-app-ofha.vercel.app/api/"
 
 export const signUpApi = async (data) => {
     return await axios.post(`${domainUrl}auth/signup`, data, { withCredentials: true });
